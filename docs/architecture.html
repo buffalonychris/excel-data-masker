@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Architecture Overview</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h1 { color: #4d4085; }
+    ul { margin-left: 20px; }
+    .nav { margin-bottom: 20px; }
+    .nav a { margin-right: 15px; color: #5ea7a3; text-decoration: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Architecture Overview</h1>
+  <div class="nav">
+    <a href="index.html">Home</a>
+  </div>
+  <p>The Excel Data Masker is a modular Python app that anonymizes sensitive Excel data through a user-friendly interface.</p>
+  <h3>Modules:</h3>
+  <ul>
+    <li><b>main_app.py</b> – Launch UI and main loop</li>
+    <li><b>ui_field_selector_grid.py</b> – Grid-based field selector (tksheet)</li>
+    <li><b>mask_logic.py</b> – Field-by-field masking logic</li>
+  </ul>
+  <p>Designed to run fully offline, the tool supports masking strategies like Full, Partial, and Replace with preview functionality.</p>
+</body>
+</html>
