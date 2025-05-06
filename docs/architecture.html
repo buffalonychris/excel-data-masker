@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Architecture Overview</title>
+  <title>Architecture Overview</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     h1 { color: #4d4085; }
@@ -10,6 +10,7 @@
     .nav { margin-bottom: 20px; }
     .nav a { margin-right: 15px; color: #5ea7a3; text-decoration: none; font-weight: bold; }
     footer { margin-top: 40px; font-size: 13px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
+    .section { margin-bottom: 30px; }
   </style>
 </head>
 <body>
@@ -17,14 +18,51 @@
   <div class="nav">
     <a href="index.html">Home</a>
   </div>
-  <p>The Excel Data Masker is a modular Python app that anonymizes sensitive Excel data through a user-friendly interface.</p>
-  <h3>Modules:</h3>
-  <ul>
-    <li><b>main_app.py</b> – Launch UI and main loop</li>
-    <li><b>ui_field_selector_grid.py</b> – Grid-based field selector (tksheet)</li>
-    <li><b>mask_logic.py</b> – Field-by-field masking logic</li>
-  </ul>
-  <p>Designed to run fully offline, the tool supports masking strategies like Full, Partial, and Replace with preview functionality.</p>
+
+  <div class="section">
+    <p>The Excel Data Masker is a modular Python app that anonymizes sensitive Excel data through a user-friendly interface.</p>
+  </div>
+
+  <div class="section">
+    <h3>Modules:</h3>
+    <ul>
+      <li><b>main_app.py</b> – Launch UI and main loop</li>
+      <li><b>ui_field_selector_grid.py</b> – Grid-based field selector (tksheet)</li>
+      <li><b>mask_logic.py</b> – Field-by-field masking logic</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>📁 Folder Structure</h3>
+    <ul>
+      <li><b>/docs</b> – GitHub Pages HTML and architecture documentation</li>
+      <li><b>/sample_data</b> – Example input spreadsheets</li>
+      <li><b>/.github/workflows</b> – GitHub Actions CI for linting</li>
+      <li><b>main_app.py</b>, <b>requirements.txt</b>, <b>README.md</b>, etc. – Core project files</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>🧩 Architecture Visual</h3>
+    <p><i>[Insert system architecture diagram here – e.g., block diagram or workflow image]</i></p>
+  </div>
+
+  <div class="section">
+    <h3>🔐 Privacy and Security</h3>
+    <ul>
+      <li>All processing is done locally – no external servers involved</li>
+      <li>Fuzzy logic suggestions are applied only on user-supplied files</li>
+      <li>No tracking, telemetry, or remote access features</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>🔗 GitHub Links & CI Badge</h3>
+    <p>
+      <a href="https://github.com/buffalonychris/excel-data-masker">GitHub Repository</a><br>
+      <img src="https://github.com/buffalonychris/excel-data-masker/actions/workflows/python-lint.yml/badge.svg" alt="CI Status">
+    </p>
+  </div>
 
   <footer>
     <div>© 2025 Christian A. Brzostowicz | <a href="mailto:BuffaloNYChris@GMail.com">Contact</a> | <a href="index.html">Back to Home</a></div>
