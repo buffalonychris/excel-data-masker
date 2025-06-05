@@ -54,17 +54,22 @@ def apply_selected_mask(df, selected_columns):
     return df
 
 def run_processing(filepath, columns_to_mask, status_label, progress_var):
+    """Process the Excel file in a worker thread and update the UI safely."""
     try:
         xls = pd.ExcelFile(filepath, engine='openpyxl')
         masked_sheets = {}
         total = len(xls.sheet_names)
 
         for i, sheet in enumerate(xls.sheet_names):
-            status_label.config(text=f"Processing sheet: {sheet}")
+            # Schedule UI update on the main thread
+            status_label.after(0, lambda s=sheet: status_label.config(text=f"Processing sheet: {s}"))
+
             df = pd.read_excel(xls, sheet_name=sheet)
             df_masked = apply_selected_mask(df, columns_to_mask)
             masked_sheets[sheet] = df_masked
-            progress_var.set(int((i + 1) / total * 100))
+
+            percent = int((i + 1) / total * 100)
+            status_label.after(0, lambda p=percent: progress_var.set(p))
             time.sleep(0.1)
 
         out_dir = os.path.join(os.path.dirname(filepath), "Masked")
@@ -78,8 +83,8 @@ def run_processing(filepath, columns_to_mask, status_label, progress_var):
             for sheet_name, df in masked_sheets.items():
                 df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-        status_label.config(text=f"Done! Saved to:\n{out_path}")
-        messagebox.showinfo("Done", f"Masked file saved to:\n{out_path}")
+        status_label.after(0, lambda p=out_path: status_label.config(text=f"Done! Saved to:\n{p}"))
+        status_label.after(0, lambda p=out_path: messagebox.showinfo("Done", f"Masked file saved to:\n{p}"))
 
     except Exception as e:
-        messagebox.showerror("Error", f"An error occurred:\n{str(e)}")
+        status_label.after(0, lambda msg=str(e): messagebox.showerror("Error", f"An error occurred:\n{msg}"))
